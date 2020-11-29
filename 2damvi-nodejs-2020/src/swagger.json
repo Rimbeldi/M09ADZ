@@ -1,0 +1,177 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "",
+      "version": "1.0.0",
+      "title": "Swagger-ADZ"
+    },
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Muetra el ranking.",
+          "description": "Muestra por pantalla el ranking.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/Code"
+              }
+            }
+          }
+        }
+      },
+      "/ranking": {
+        "get": {
+          "summary": "Muetra el ranking.",
+          "description": "Muestra por pantalla el ranking.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "search results matching criteria",
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          }
+        }
+      },
+      "/players/{alias}": {
+        "get": {
+          "summary": "Watch an especifical user.",
+          "description": "We can see a user which is registred",
+          "parameters": [
+            {
+              "name": "alias",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "101": {
+              "description": "show a player",
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            },
+            "102": {
+              "description": "A code",
+              "schema": {
+                "$ref": "#/definitions/Code"
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "adds a player",
+          "description": "addition of a player",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "alias",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "Player",
+              "description": "name surname score etc",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "item created",
+              "schema": {
+                "$ref": "#/definitions/Code"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "adds a player",
+          "description": "addition of a player",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "alias",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "Player",
+              "description": "name surname score etc",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          ],
+          "responses": {
+            "301": {
+              "description": "item created",
+              "schema": {
+                "$ref": "#/definitions/Code"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Player": {
+        "type": "object",
+        "required": [
+          "name",
+          "score",
+          "surname"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          }
+        }
+      },
+      "Code": {
+        "type": "object",
+        "required": [
+          "code",
+          "error",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
